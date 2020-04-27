@@ -77,6 +77,9 @@ bindsym $mod+h split h
 # split in vertical orientation
 bindsym $mod+v split v
 
+# sticky
+bindsym $mod+n sticky toggle
+
 # lock screen
 bindsym $mod+l exec "betterlockscreen -l dim"
 
