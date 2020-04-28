@@ -27,7 +27,11 @@ Plug 'junegunn/vim-emoji'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 Plug 'liuchengxu/vista.vim'
+
+" Colorschemes
 Plug 'morhetz/gruvbox'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'kaicataldo/material.vim'
 call plug#end()
 
 " -----------------------------[Python config]---------------------------------
@@ -119,7 +123,13 @@ let NERDTreeMinimalUI=1
 " -------------------------------[ Keymap ]------------------------------------
 
 " Quick escape to normal
-map jj <Esc>
+imap jj <Esc>
+xmap jj <Esc>
+
+" Quick changing colorscheme
+map 1 :colorscheme gruvbox<CR>
+map 2 :colorscheme palenight<CR>
+map 3 :colorscheme material<CR>
 
 " Split window
 nmap sp :split<Return><C-w>w
@@ -138,8 +148,9 @@ map <silent><SPACE> :Goyo<CR>
 map <UP> gk
 map <DOWN> gj
 
-" Quick edit config
+" Quick edit and apply config
 nmap <C-F> :e ~/.config/nvim/init.vim<CR>
+nmap <C-K> :source ~/.config/nvim/init.vim<CR>
 
 " Jump to start and end of line
 map <C-e> $
@@ -174,6 +185,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 noremap <silent> <c-p> <ESC>:call fzf#vim#files('.', {'options': g:fzf_preview_source})<CR>
 noremap <silent> <leader>/ <ESC>:BLines<CR>
 noremap <leader>rg <ESC>:Rg<space>
+noremap <silent> ;b :Buffers<CR>
 
 " ---------------------------[ Language Server ]-------------------------------
 function! s:show_documentation()
@@ -235,7 +247,6 @@ function! LightLineFilename()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ ['fileicon'], [ 'cocstatus' ], [ 'filename', 'nearmethod' ] ],
       \   'right': [ [ 'icongitbranch' ], [ 'lineinfo' ] ]
@@ -244,7 +255,7 @@ let g:lightline = {
       \   'left': [ [], ['fileicon'], [ 'filename' ] ],
       \   'right': []
       \ },
-      \ 'component': { 'lineinfo': ' %2p%% %3l:%-2v' },
+      \ 'component': { 'lineinfo': ' %2p%% [%v|%l/%L]' },
       \ 'component_function': {
       \   'fileicon': 'MyFiletype',
       \   'icongitbranch': 'DrawGitBranchInfo',

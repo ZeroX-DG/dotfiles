@@ -192,4 +192,4 @@ exec_always --no-startup-id xset r rate 250 40
 # floating windows
 for_window [class="Yad" title="yad-calendar"] floating enable
 
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/wl-op-30s.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/hcm.jpg
