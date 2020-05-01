@@ -54,10 +54,15 @@ bindsym $mod+q kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -72,16 +77,16 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+z split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+x split v
 
 # sticky
 bindsym $mod+n sticky toggle
 
 # lock screen
-bindsym $mod+l exec "betterlockscreen -l dim"
+bindsym $mod+v exec "betterlockscreen -l dim"
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle

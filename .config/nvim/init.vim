@@ -117,32 +117,38 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 " ------------------------------[ Nerd tree ]----------------------------------
-map <C-N> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 
 " -------------------------------[ Keymap ]------------------------------------
+" Map leader to space
+let mapleader = "\<Space>"
 
-" Quick escape to normal
 imap jj <Esc>
-xmap jj <Esc>
+
+map qw :wq<CR>
+map qq :q<CR>
 
 " Quick changing colorscheme
-map 1 :colorscheme gruvbox<CR>
-map 2 :colorscheme palenight<CR>
-map 3 :colorscheme material<CR>
+map t1 :colorscheme gruvbox<CR>
+map t2 :colorscheme palenight<CR>
+map t3 :colorscheme material<CR>
 
 " Split window
 nmap sp :split<Return><C-w>w
 nmap sv :vsplit<Return><C-w>w
 
 " Move between windows
-nnoremap <M-UP> <C-W>k
-nnoremap <M-DOWN> <C-W>j
-nnoremap <M-RIGHT> <C-W>l
-nnoremap <M-LEFT> <C-W>h
+" nnoremap <M-UP> <C-W>k
+" nnoremap <M-DOWN> <C-W>j
+" nnoremap <M-RIGHT> <C-W>l
+" nnoremap <M-LEFT> <C-W>h
+nnoremap <M-k> <C-W>k
+nnoremap <M-j> <C-W>j
+nnoremap <M-l> <C-W>l
+nnoremap <M-h> <C-W>h
 
-" Jump to Goyo when space
-map <silent><SPACE> :Goyo<CR>
+" Edit helpers
+imap <C-d> <ESC>l1xi
 
 " Move up and down in physical line than logical line
 map <UP> gk
@@ -161,6 +167,9 @@ imap <C-e> <ESC>A
 " Close buffer
 nnoremap <silent> <M-c> :bw<CR>
 
+" Nerd tree toggle
+map <C-N> :NERDTreeToggle<CR>
+
 " Copy to system clipboard
 noremap ;y "+y
 noremap ;p "+p
@@ -172,8 +181,8 @@ nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 noremap ss :update<CR>
 
 " Move selection of lines up or down
-xnoremap <S-UP> :move '<-2<CR>gv-gv
-xnoremap <S-DOWN> :move '<+1<CR>gv-gv
+xnoremap <S-k> :move '<-2<CR>gv-gv
+xnoremap <S-j> :move '<+1<CR>gv-gv
 
 " Map :W to :w because I always type :W
 cmap W w
@@ -184,8 +193,8 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Start fuzzy search
 noremap <silent> <c-p> <ESC>:call fzf#vim#files('.', {'options': g:fzf_preview_source})<CR>
 noremap <silent> <leader>/ <ESC>:BLines<CR>
-noremap <leader>rg <ESC>:Rg<space>
-noremap <silent> ;b :Buffers<CR>
+noremap <leader>rg <ESC>:Rg<CR>
+noremap <leader>b :Buffers<CR>
 
 " ---------------------------[ Language Server ]-------------------------------
 function! s:show_documentation()
