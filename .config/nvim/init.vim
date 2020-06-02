@@ -12,6 +12,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-fugitive'
+Plug 'easymotion/vim-easymotion'
+Plug 'jiangmiao/auto-pairs'
+Plug 'wakatime/vim-wakatime'
+Plug 'tpope/vim-surround'
 
 " Syntax
 Plug 'posva/vim-vue'
@@ -32,11 +36,16 @@ Plug 'liuchengxu/vista.vim'
 Plug 'morhetz/gruvbox'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'kaicataldo/material.vim'
+
+" Other
+Plug 'ThePrimeagen/vim-be-good'
+
 call plug#end()
 
-" -----------------------------[Python config]---------------------------------
+" -----------------------------[Provider config]---------------------------------
 let g:python_host_prog = "/usr/bin/python2"
 let g:python3_host_prog = "/usr/bin/python3.6"
+let g:node_host_prog = "/usr/local/bin/neovim-node-host"
 
 " ----------------------------[ General config ]-------------------------------
 filetype plugin indent on
@@ -70,7 +79,7 @@ set nobackup
 set nowritebackup
 set splitbelow
 set splitright
-set nu
+set nu rnu
 set formatoptions+=j
 
 " Define characters to show when you show formatting
@@ -95,7 +104,8 @@ set sessionoptions-=options
 
 " ----------------------------------[ UI ]-------------------------------------
 set background=dark
-colorscheme gruvbox
+colorscheme material
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
@@ -104,10 +114,35 @@ endif
 " -------------------------------[ Prettier ]----------------------------------
 
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
 
 " -------------------------------[ Markdown ]----------------------------------
 autocmd! FileType markdown set completefunc=emoji#complete
+
+function! s:goyo_enter()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  set lbr
+endfunction
+
+function! s:goyo_leave()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
+  set showmode
+  set showcmd
+  set scrolloff=5
+  set nolbr
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " --------------------------------[ Latex ]------------------------------------
 let g:tex_flavor='latex'
@@ -127,6 +162,8 @@ imap jj <Esc>
 
 map qw :wq<CR>
 map qq :q<CR>
+
+map <F12> :set nu! rnu!<CR>
 
 " Quick changing colorscheme
 map t1 :colorscheme gruvbox<CR>
@@ -150,9 +187,18 @@ nnoremap <M-h> <C-W>h
 " Edit helpers
 imap <C-d> <ESC>l1xi
 
+" Writing mode
+nmap <leader>w :Goyo<CR>
+
+" Code navigation
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gt <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+
 " Move up and down in physical line than logical line
-map <UP> gk
-map <DOWN> gj
+map k gk
+map j gj
 
 " Quick edit and apply config
 nmap <C-F> :e ~/.config/nvim/init.vim<CR>
@@ -195,6 +241,9 @@ noremap <silent> <c-p> <ESC>:call fzf#vim#files('.', {'options': g:fzf_preview_s
 noremap <silent> <leader>/ <ESC>:BLines<CR>
 noremap <leader>rg <ESC>:Rg<CR>
 noremap <leader>b :Buffers<CR>
+
+" Git
+noremap <leader>gs :Gstatus<CR>
 
 " ---------------------------[ Language Server ]-------------------------------
 function! s:show_documentation()

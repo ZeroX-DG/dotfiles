@@ -60,7 +60,7 @@ font-4 = "Font Awesome 5 Brands:pixelsize=10;1"
 
 modules-left = powermenu i3
 modules-center = date
-modules-right = volume cpu memory filesystem battery wlan
+modules-right = volume cpu memory battery wlan
 
 tray-position = right
 tray-padding = 9
@@ -94,7 +94,6 @@ wm-restack = i3
 ;format-prefix-foreground = ${colors.foreground-alt}
 ;exec = python ~/.config/polybar/weather.py
 
-
 ;[module/mpd]
 ;type = internal/mpd
 
@@ -121,6 +120,7 @@ ws-icon-0 = 1;龜
 ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
+ws-icon-4 = 5;
 
 label-unfocused-background = ${colors.my_background}
 label-unfocused-foreground = ${colors.my_foreground}
@@ -182,12 +182,14 @@ interval = 3.0
 format-connected-background = ${colors.my_background}
 format-connected = "<label-connected><ramp-signal>"
 format-connected-padding = 1
+format-connected-margin = 1
 format-connected-underline = #9f78e1
-label-connected = " "
+label-connected = " %essid% "
 label-connected-foreground = #9f78e1
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
+format-disconnected-margin = 1
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = foreground
 
@@ -283,19 +285,19 @@ format-full-background = ${colors.my_background}
 format-charging-background = ${colors.my_background}
 format-charging = "⁣  <label-charging> <animation-charging> "
 format-charging-underline = ${colors.my_color7}
-format-charging-margin = 1
+format-charging-margin = 0
 
 ;format-discharging-background = ${colors.my_color4}
 format-discharging-background = ${colors.my_background}
 format-discharging = "⁣ <label-discharging> <ramp-capacity> "
 format-discharging-underline = ${self.format-charging-underline}
-format-discharging-margin = 1
+format-discharging-margin = 0
 
 ;format-full-prefix-foreground = ${colors.my_color4}
 format-full-prefix-foreground = #00b894
 format-full-prefix = " "
 format-full-underline = #00b894
-format-full-margin = 1
+format-full-margin = 0
 
 format-charing-background = ${colors.my_background}
 format-full-padding = 1
