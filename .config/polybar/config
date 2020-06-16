@@ -50,11 +50,11 @@ padding-right = 0
 
 module-margin-right = 3
 
-font-0 = "Hack:fontformat=truetype:size=10;2"
-font-1 = "Hack:fontformat=truetype:size=10;2"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
-font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
-font-4 = "Font Awesome 5 Brands:pixelsize=10;2"
+font-0 = "Hack:fontformat=truetype:size=10;3"
+font-1 = "Hack:fontformat=truetype:size=10;3"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;3"
+font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;3"
+font-4 = "Font Awesome 5 Brands:pixelsize=10;3"
 
 modules-left = powermenu i3
 modules-right = weather volume battery cpu memory wlan date
