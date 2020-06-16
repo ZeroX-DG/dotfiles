@@ -36,6 +36,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'morhetz/gruvbox'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'kaicataldo/material.vim'
+Plug 'archseer/colibri.vim'
 
 " Other
 Plug 'ThePrimeagen/vim-be-good'
@@ -153,6 +154,7 @@ let g:tex_conceal='abdmg'
 
 " ------------------------------[ Nerd tree ]----------------------------------
 let NERDTreeMinimalUI=1
+let NERDTreeShowLineNumbers=1
 
 " -------------------------------[ Keymap ]------------------------------------
 " Map leader to space
@@ -169,6 +171,7 @@ map <F12> :set nu! rnu!<CR>
 map t1 :colorscheme gruvbox<CR>
 map t2 :colorscheme palenight<CR>
 map t3 :colorscheme material<CR>
+map t4 :colorscheme colibri<CR>
 
 " Split window
 nmap sp :split<Return><C-w>w

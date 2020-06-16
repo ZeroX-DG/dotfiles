@@ -36,8 +36,7 @@ offset-y = 0%
 radius = 0.0
 fixed-center = true
 
-
-background = ${colors.my_background}
+background = #AA000000
 foreground = ${colors.my_foreground}
 
 line-size = 4
@@ -49,18 +48,16 @@ border-color = ${colors.my_color4}
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 0
-module-margin-right = 0
+module-margin-right = 3
 
-font-0 = "Hack:fontformat=truetype:size=10;1"
-font-1 = "Hack:fontformat=truetype:size=10;1"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
-font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
-font-4 = "Font Awesome 5 Brands:pixelsize=10;1"
+font-0 = "Hack:fontformat=truetype:size=10;2"
+font-1 = "Hack:fontformat=truetype:size=10;2"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=10;2"
+font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
+font-4 = "Font Awesome 5 Brands:pixelsize=10;2"
 
 modules-left = powermenu i3
-modules-center = date
-modules-right = volume cpu memory battery wlan
+modules-right = volume battery cpu memory wlan date
 
 tray-position = right
 tray-padding = 9
@@ -121,8 +118,8 @@ ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;
+format-offset = -20
 
-label-unfocused-background = ${colors.my_background}
 label-unfocused-foreground = ${colors.my_foreground}
 
 ; Available tokens:
@@ -141,8 +138,7 @@ label-mode-background = ${colors.my_color7}
 label-focused = %index% %icon%
 ;label-focused-foreground = ${colors.my_foreground}
 label-focused-foreground = ${colors.my_foreground}
-label-focused-background = #3d3d3d
-label-focused-underline = #fdcb6e
+label-focused-background = #341f97
 label-focused-padding = 1
 
 ; Available tokens:
@@ -179,44 +175,13 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-format-connected-background = ${colors.my_background}
-format-connected = "<label-connected><ramp-signal>"
-format-connected-padding = 1
-format-connected-margin = 1
-format-connected-underline = #9f78e1
-label-connected = " %essid% "
-label-connected-foreground = #9f78e1
+format-connected = "<label-connected>"
+label-connected = " %essid% (%signal%%)"
+label-connected-foreground = "#00b894"
 
 format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
-format-disconnected-margin = 1
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = foreground
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.my_foreground}
-
-
-;[module/eth]
-;type = internal/network
-;interface = enp0s25
-;interval = 3.0
-;
-;format-connected-underline = #55aa55
-;format-connected-prefix = ""
-;format-connected-prefix-foreground = ${colors.foreground-alt}
-;label-connected = %local_ip%
-;
-;format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
+label-disconnected =   disconnected
+label-disconnected-foreground = "#e17055"
 
 [module/date]
 type = internal/date
@@ -224,14 +189,10 @@ interval = 5
 
 date =
 date-alt = "%Y-%m-%d"
-
 time = "%a %b %d, %I:%M %p "
-
 time-alt = %H:%M
-
 format-prefix-foreground = ${colors.my_foreground}
-format-underline = ${colors.my_color7}
-
+format = <label>
 label = %date% %time%
 
 
@@ -240,13 +201,8 @@ type = internal/alsa
 
 format-muted-background = background
 format-volume-background = background
-format-volume = <label-volume> <bar-volume> 
+format-volume = "<ramp-volume> <label-volume>"
 label-muted =  muted
-format-muted-underline = #6c5ce7
-format-muted-padding = 1
-format-volume-padding = 1
-format-volume-margin = 1
-format-muted-margin = 1
 
 ; Only applies if <ramp-volume> is used
 bar-volume-width = 10
@@ -258,22 +214,6 @@ ramp-headphones-0 = 
 ramp-headphones-1 = 
 ramp-headphones-2 = 
 
-bar-volume-foreground-0 = ${colors.my_foreground}
-bar-volume-foreground-1 = ${colors.my_foreground}
-bar-volume-foreground-2 = ${colors.my_foreground}
-bar-volume-foreground-3 = ${colors.my_foreground}
-bar-volume-foreground-4 = ${colors.my_foreground}
-bar-volume-foreground-5 = ${colors.my_foreground}
-bar-volume-foreground-6 = ${colors.my_foreground}
-bar-volume-gradient = false
-bar-volume-indicator= |
-bar-volume-indicator-font = 1
-bar-volume-fill = ─
-bar-volume-fill-font = 1
-bar-volume-empty = ─
-bar-volume-empty-font = 1
-bar-volume-empty-foreground = #3d3d3d
-
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -281,28 +221,17 @@ adapter = AC
 full-at = 99
 
 ;format-full-background = ${colors.my_color4}
-format-full-background = ${colors.my_background}
-format-charging-background = ${colors.my_background}
 format-charging = "⁣  <label-charging> <animation-charging> "
-format-charging-underline = ${colors.my_color7}
 format-charging-margin = 0
 
 ;format-discharging-background = ${colors.my_color4}
-format-discharging-background = ${colors.my_background}
 format-discharging = "⁣ <label-discharging> <ramp-capacity> "
-format-discharging-underline = ${self.format-charging-underline}
 format-discharging-margin = 0
 
 ;format-full-prefix-foreground = ${colors.my_color4}
 format-full-prefix-foreground = #00b894
 format-full-prefix = " "
-format-full-underline = #00b894
 format-full-margin = 0
-
-format-charing-background = ${colors.my_background}
-format-full-padding = 1
-format-charing-padding = 1
-format-discharging-padding = 1
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -312,23 +241,18 @@ ramp-capacity-4 = 
 
 ramp-capacity-0-foreground = #ffffff
 ramp-capacity-0-prefix-foreground = #ffffff
-ramp-capacity-0-background = #d63031
 
 ramp-capacity-1-foreground = #ffffff
 ramp-capacity-1-prefix-foreground = #ffffff
-ramp-capacity-1-background = #d63031
 
 ramp-capacity-2-foreground = foreground
 ramp-capacity-2-prefix-foreground = #e17055
-ramp-capacity-2-background = background
 
 ramp-capacity-3-foreground = foreground
 ramp-capacity-3-prefix-foreground = #fdcb6e
-ramp-capacity-3-background = background
 
 ramp-capacity-4-foreground = foreground
 ramp-capacity-4-prefix-foreground = #00b894
-ramp-capacity-4-background = background
 
 animation-charging-0 = 
 animation-charging-1 = 
@@ -413,22 +337,14 @@ format-mounted-underline = #0984e3
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = #fdcb6e
-format-prefix-background = foreground
+format-prefix = " CPU "
 label = %percentage%%
-format-underline = #fdcb6e
-format-padding = 1
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = #6c5ce7
+format-prefix = " RAM "
 label = %gb_used%
-format-underline = #6c5ce7
-format-padding = 1
-format-margin = 1
 
 ; vim:ft=dosini
 
