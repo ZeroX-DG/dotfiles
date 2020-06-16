@@ -177,7 +177,7 @@ label-connected = " %essid% (%signal%%)"
 label-connected-foreground = "#00b894"
 
 format-disconnected = <label-disconnected>
-label-disconnected =   disconnected
+label-disconnected =  disconnected
 label-disconnected-foreground = "#e17055"
 
 [module/date]
