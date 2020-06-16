@@ -57,7 +57,7 @@ font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=10;2"
 font-4 = "Font Awesome 5 Brands:pixelsize=10;2"
 
 modules-left = powermenu i3
-modules-right = volume battery cpu memory wlan date
+modules-right = weather volume battery cpu memory wlan date
 
 tray-position = right
 tray-padding = 9
@@ -80,16 +80,13 @@ wm-restack = i3
 ;scroll-down = i3wm-wsprev
 
 
-;[module/weather]
-;type = custom/script
-;interval = 60
+[module/weather]
+type = custom/script
+interval = 60
 
-;format-background = ${colors.background-mod1}
-;format = <label>
-;format-prefix = " ⁣   "
-;format-suffix = "  "
-;format-prefix-foreground = ${colors.foreground-alt}
-;exec = python ~/.config/polybar/weather.py
+format = <label>
+format-prefix-foreground = ${colors.foreground}
+exec = /home/zerox/.config/polybar/scripts/weather.sh
 
 ;[module/mpd]
 ;type = internal/mpd
