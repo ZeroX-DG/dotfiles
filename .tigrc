@@ -1,0 +1,3 @@
+color cursor        white   color55 bold
+color title-blur		white   color57
+color title-focus		white 	color57	bold
