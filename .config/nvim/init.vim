@@ -170,6 +170,12 @@ function! s:disable_background()
   highlight LineNr ctermbg=none guibg=none
 endfunction
 
+function! s:change_colorscheme(scheme)
+  execute 'colorscheme '.a:scheme
+  echo 'Colorscheme: '.a:scheme
+  call s:disable_background()
+endfunction
+
 call s:disable_background()
 
 " -------------------------------[ Prettier ]----------------------------------
@@ -228,11 +234,11 @@ map qq :q<CR>
 map <F12> :set nu! rnu!<CR>
 
 " Quick changing colorscheme
-map t1 :colorscheme gruvbox<CR>
-map t2 :colorscheme palenight<CR>
-map t3 :colorscheme material<CR>
-map t4 :colorscheme colibri<CR>
-map t5 :colorscheme wal<CR>
+map <silent> t1 :call <SID>change_colorscheme('gruvbox')<CR>
+map <silent> t2 :call <SID>change_colorscheme('palenight')<CR>
+map <silent> t3 :call <SID>change_colorscheme('material')<CR>
+map <silent> t4 :call <SID>change_colorscheme('colibri')<CR>
+map <silent> t5 :call <SID>change_colorscheme('wal')<CR>
 
 " Split window
 nmap sp :split<Return><C-w>w
