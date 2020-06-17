@@ -1,5 +1,5 @@
 configuration {
- modi: "window,drun,ssh,combi";
+ modi: "combi";
  theme: "~/.cache/wal/colors-rofi-dark";
  combi-modi: "window,drun,ssh";
  show-icons: true;
