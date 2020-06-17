@@ -5,7 +5,14 @@ set PATH /snap/bin $PATH
 set XDG_CURRENT_DESKTOP KDE
 set fish_greeting
 
-cat ~/.cache/wal/sequences > (tty)
+function apply_wal_sequences
+  set tty_path (tty)
+  if test $tty_path != "not a tty"
+    cat ~/.cache/wal/sequences > $tty_path
+  end
+end
+
+apply_wal_sequences
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 alias ls='lsd'
