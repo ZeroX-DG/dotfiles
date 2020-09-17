@@ -16,6 +16,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'wakatime/vim-wakatime'
 Plug 'tpope/vim-surround'
+Plug 'vim-test/vim-test'
 
 " Syntax
 Plug 'posva/vim-vue'
@@ -83,6 +84,10 @@ set splitbelow
 set splitright
 set nu rnu
 set formatoptions+=j
+set foldmethod=syntax   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 let s:show_bg=v:true
 " Define characters to show when you show formatting
 if &listchars ==# 'eol:$'
@@ -195,6 +200,7 @@ function! s:goyo_enter()
   set noshowcmd
   set scrolloff=999
   set lbr
+  call s:disable_background()
 endfunction
 
 function! s:goyo_leave()
@@ -206,6 +212,7 @@ function! s:goyo_leave()
   set showcmd
   set scrolloff=5
   set nolbr
+  call s:disable_background()
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -317,6 +324,13 @@ noremap <leader>gs :Gstatus<CR>
 " Thanks thefullsnack
 nnoremap <silent> <Leader>ft :call FloatTerm()<CR>
 nnoremap <silent> <Leader>fg :call FloatTerm('"tig"')<CR>
+
+" Testing
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 " ---------------------------[ Language Server ]-------------------------------
 function! s:show_documentation()
