@@ -32,6 +32,7 @@ Plug 'junegunn/vim-emoji'
 Plug 'Yggdroot/indentLine'
 Plug 'ryanoasis/vim-devicons'
 Plug 'liuchengxu/vista.vim'
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -39,9 +40,6 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'kaicataldo/material.vim'
 Plug 'archseer/colibri.vim'
 Plug 'dylanaraps/wal.vim'
-
-" Other
-Plug 'ThePrimeagen/vim-be-good'
 
 call plug#end()
 
@@ -272,6 +270,8 @@ nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> <leader>gt <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
+nmap <silent> ]c :call CocAction('diagnosticNext')<CR>
+nmap <silent> [c :call CocAction('diagnosticPrevious')<CR>
 
 " Move up and down in physical line than logical line
 map k gk
@@ -306,9 +306,6 @@ noremap ss :update<CR>
 " Move selection of lines up or down
 xnoremap <S-k> :move '<-2<CR>gv-gv
 xnoremap <S-j> :move '<+1<CR>gv-gv
-
-" Map :W to :w because I always type :W
-cmap W w
 
 " Show docs on K
 nnoremap <silent> K :call <SID>show_documentation()<CR>

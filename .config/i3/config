@@ -184,5 +184,6 @@ for_window [class=".*"] border pixel 1
 # ----------------------[ STARTUP PROGRAMS ]-----------------------
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xset r rate 200 60
+exec_always --no-startup-id dunst
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/cyberpunk1.jpg
 exec_always --no-startup-id compton --config ~/.config/i3/compton.conf
