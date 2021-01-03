@@ -16,15 +16,15 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'wakatime/vim-wakatime'
 Plug 'tpope/vim-surround'
-Plug 'vim-test/vim-test'
+Plug 'lervag/vimtex'
 
 " Syntax
 Plug 'posva/vim-vue'
-Plug 'lervag/vimtex'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'kchmck/vim-coffee-script'
 Plug 'ollykel/v-vim'
+Plug 'ekalinin/Dockerfile.vim'
 
 " UI
 Plug 'itchyny/lightline.vim'
@@ -176,10 +176,14 @@ endfunction
 function! s:change_colorscheme(scheme)
   execute 'colorscheme '.a:scheme
   echo 'Colorscheme: '.a:scheme
-  call s:disable_background()
+  let g:lightline.colorscheme = a:scheme
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
+  "call s:disable_background()
 endfunction
 
-call s:disable_background()
+"call s:disable_background()
 
 " -------------------------------[ Prettier ]----------------------------------
 
@@ -217,9 +221,10 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " --------------------------------[ Latex ]------------------------------------
+
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=1
+let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
 
@@ -290,6 +295,11 @@ imap <C-e> <ESC>A
 " Close buffer
 nnoremap <silent> <M-c> :bw<CR>
 
+" Switch to normal mode in terminal
+if has('nvim')
+  tmap <C-o> <C-\><C-n>
+endif
+
 " Nerd tree toggle
 map <C-N> :NERDTreeToggle<CR>
 
@@ -350,7 +360,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " ----------------------------[ Fuzzy search ]---------------------------------
 let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=node_modules'
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden -g "!node_modules"'
 let g:fzf_preview_source=" --preview='bat {} --theme='TwoDark' --color=always'"
 let $FZF_DEFAULT_OPTS='--layout=reverse'
 
