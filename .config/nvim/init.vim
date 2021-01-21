@@ -25,6 +25,8 @@ Plug 'ianks/vim-tsx'
 Plug 'kchmck/vim-coffee-script'
 Plug 'ollykel/v-vim'
 Plug 'ekalinin/Dockerfile.vim'
+Plug 'cespare/vim-toml'
+Plug 'tikhomirov/vim-glsl'
 
 " UI
 Plug 'itchyny/lightline.vim'
